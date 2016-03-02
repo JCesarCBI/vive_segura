@@ -56,14 +56,37 @@
 
 		}
 		
-		public function index_put()
+		public function index_put($id_usuaria)
 		{
 			echo "Vive Segura PUT";
+			
+			if (! $this->put('usuaria') || !$id_usuaria) {
+				$this->response(NULL, 400);
+			} else {
+				$update = $this->Registro_usuaria_m->update($id_usuaria, $this->put('usuaria'));
+				if (!is_null($update)) {
+					$this->response(array("Response" => "Datos de la usuaria actualizados"), 200);
+				} else {
+					$this->response(array("Error" => "Ha ocurrido un error."), 400);
+				}
+			}
 		}
 		
-		public function index_delete()
+		public function index_delete($id_usuaria)
 		{
 			echo "Vive Segura DELETE";
+			
+			if (!$id_usuaria) {
+				$this->response(NULL, 400);
+			}
+			
+			$delete = $this->Registro_usuaria_m->delete($id_usuaria);
+			
+			if (!is_null($delete)) {
+				$this->response(array("Response" => "Datos de la usuaria eliminados"), 200);
+			} else {
+				$this->response(array("Error" => "Ha ocurrido un error."), 400);
+			}
 		}
 	}
 	
