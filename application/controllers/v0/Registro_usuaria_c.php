@@ -41,12 +41,12 @@
 		
 		public function index_post()
 		{
-			echo "Vive Segura POST";
+			// echo "Vive Segura POST";
 			
-			if (! $this->post('usuaria')) {
+			if (! $this->post()) {
 				$this->response(NULL, 400);
 			} else {
-				$id_usuaria = $this->Registro_usuaria_m->save($this->post('usuaria'));
+				$id_usuaria = $this->Registro_usuaria_m->save($this->post());
 				if (!is_null($id_usuaria)) {
 					$this->response(array("Response" => $id_usuaria), 200);
 				} else {
@@ -60,10 +60,10 @@
 		{
 			echo "Vive Segura PUT";
 			
-			if (! $this->put('usuaria') || !$id_usuaria) {
+			if (! $this->put() || !$id_usuaria) {
 				$this->response(NULL, 400);
 			} else {
-				$update = $this->Registro_usuaria_m->update($id_usuaria, $this->put('usuaria'));
+				$update = $this->Registro_usuaria_m->update($id_usuaria, $this->put());
 				if (!is_null($update)) {
 					$this->response(array("Response" => "Datos de la usuaria actualizados"), 200);
 				} else {

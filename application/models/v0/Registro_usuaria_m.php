@@ -30,7 +30,7 @@
 			$this->db->SET(
 				$this->_setUsuaria($usuaria)
 				)
-				->INSERT('usuarias');
+				->INSERT('usuaria');
 			if ($this->db->affected_rows() === 1) {
 				return $this->db->insert_id();
 			}
@@ -62,21 +62,51 @@
 		
 		private function _setUsuaria($usuaria)
 		{
-			return array(
-					'mac_dispositivo' => $usuaria['mac_dispositivo'], 
-					'plataforma_dispositivo' => $usuaria['plataforma_dispositivo'], 
-					'nickname_usuaria' => $usuaria['nickname_usuaria'], 
-					'nombre_usuaria' => $usuaria['nombre_usuaria'], 
-					'primer_apellido_usuaria' => $usuaria['primer_apellido_usuaria'], 
-					'segundo_apellido_usuaria' => $usuaria['segundo_apellido_usuaria'], 
-					'numero_celular_usuaria' => $usuaria['numero_celular_usuaria'], 
-					'fecha_nacimiento_usuaria' => $usuaria['fecha_nacimiento_usuaria'], 
-					'id_cat_colonia_cp' => $usuaria['id_cat_colonia_cp'], 
-					'correo_electronico_usuaria' => $usuaria['correo_electronico_usuaria'], 
-					'trabaja_usuaria' => $usuaria['trabaja_usuaria'], 
-					'estudia_usuaria' => $usuaria['estudia_usuaria'], 
-					'ama_casa_usuaria' => $usuaria['ama_casa_usuaria'], 
-					'fecha_registro_usuaria' => $usuaria['fecha_registro_usuaria']
-					);
+			$set_usuaria = array();
+			
+			if (isset($usuaria['mac_dispositivo'])) {
+				$set_usuaria['mac_dispositivo'] = $usuaria['mac_dispositivo'];
+			};
+			if (isset($usuaria['plataforma_dispositivo'])) {
+				$set_usuaria['plataforma_dispositivo'] = $usuaria['plataforma_dispositivo'];
+			};
+			if (isset($usuaria['nickname_usuaria'])) {
+				$set_usuaria['nickname_usuaria'] = $usuaria['nickname_usuaria'];
+			};
+			if (isset($usuaria['nombre_usuaria'])) {
+				$set_usuaria['nombre_usuaria'] = $usuaria['nombre_usuaria'];
+			};
+			if (isset($usuaria['primer_apellido_usuaria'])) {
+				$set_usuaria['primer_apellido_usuaria'] = $usuaria['primer_apellido_usuaria'];
+			};
+			if (isset($usuaria['segundo_apellido_usuaria'])) {
+				$set_usuaria['segundo_apellido_usuaria'] = $usuaria['segundo_apellido_usuaria'];
+			};
+			if (isset($usuaria['numero_celular_usuaria'])) {
+				$set_usuaria['numero_celular_usuaria'] = $usuaria['numero_celular_usuaria'];
+			};
+			if (isset($usuaria['fecha_nacimiento_usuaria'])) {
+				$set_usuaria['fecha_nacimiento_usuaria'] = $usuaria['fecha_nacimiento_usuaria'];
+			};
+			if (isset($usuaria['id_cat_colonia_cp'])) {
+				$set_usuaria['id_cat_colonia_cp'] = $usuaria['id_cat_colonia_cp'];
+			};
+			if (isset($usuaria['correo_electronico_usuaria'])) {
+				$set_usuaria['correo_electronico_usuaria'] = $usuaria['correo_electronico_usuaria'];
+			};
+			if (isset($usuaria['trabaja_usuaria'])) {
+				$set_usuaria['trabaja_usuaria'] = $usuaria['trabaja_usuaria'];
+			};
+			if (isset($usuaria['estudia_usuaria'])) {
+				$set_usuaria['estudia_usuaria'] = $usuaria['estudia_usuaria'];
+			};
+			if (isset($usuaria['ama_casa_usuaria'])) {
+				$set_usuaria['ama_casa_usuaria'] = $usuaria['ama_casa_usuaria'];
+			};
+			if (isset($usuaria['fecha_registro_usuaria'])) {
+				$set_usuaria['fecha_registro_usuaria'] = $usuaria['fecha_registro_usuaria'];
+			};
+			
+			return $set_usuaria;
 		}
 }
