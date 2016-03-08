@@ -25,16 +25,39 @@
 			}
 		}
 		
-		public function save($usuaria)
-		{
-			$this->db->SET(
-				$this->_setUsuaria($usuaria)
-				)
-				->INSERT('usuaria');
-			if ($this->db->affected_rows() === 1) {
+		// public function save($usuaria)
+		// {
+		// 	$this->db->SET(
+		// 		$this->_setUsuaria($usuaria)
+		// 		)
+		// 		->INSERT('usuaria');
+		// 	if ($this->db->affected_rows() === 1) {
+		// 		return $this->db->insert_id();
+		// 	}
+		// 	return NULL;
+		// }
+		
+		public function save($usuaria) {
+			$custom_query = "INSERT INTO usuaria(mac_dispositivo,plataforma_dispositivo,nickname_usuaria,nombre_usuaria,fecha_nacimiento_usuaria,id_cat_colonia_cp,trabaja_usuaria,estudia_usuaria,ama_casa_usuaria,fecha_registro_usuaria) 
+			VALUES ('".$usuaria["mac_dispositivo"]."',
+	    			".$usuaria["plataforma_dispositivo"].",
+	    			'".$usuaria["nickname_usuaria"]."',
+	    			'".$usuaria["nombre_usuaria"]."',
+	    			'".$usuaria["fecha_nacimiento_usuaria"]."',
+	    			".$usuaria["id_cat_colonia_cp"].",
+	    			".$usuaria["trabaja_usuaria"].",
+	    			".$usuaria["estudia_usuaria"].",
+	    			".$usuaria["ama_casa_usuaria"].",
+	    			'".$usuaria["fecha_registro_usuaria"]."'
+    		);";
+			
+			$resultado = $this->db->query($custom_query);
+
+			if ($resultado) {
 				return $this->db->insert_id();
+			} else {
+				return null;
 			}
-			return NULL;
 		}
 		
 		public function update($id_usuaria, $usuaria)
