@@ -2359,3 +2359,35 @@ INSERT INTO "cat_opciones_lugar" VALUES ('20', '7', 'Robos', '','10', '1');
 INSERT INTO "cat_opciones_lugar" VALUES ('21', '7', 'Vandalismo', '','10', '1');
 INSERT INTO "cat_opciones_lugar" VALUES ('22', '7', 'Personas consumiendo drogas y alcohol en la calle', '','10', '1');
 INSERT INTO "cat_opciones_lugar" VALUES ('23', '7', 'Robos en transporte público', '','10', '1');
+
+
+-- ----------------------------
+-- Records of cat_lugar
+-- ----------------------------
+INSERT INTO cat_lugar (lugar, estatus) VALUES ('Via publica',1);
+INSERT INTO cat_lugar (lugar, estatus) VALUES ('Transporte publico',1);
+
+
+
+
+
+CREATE OR REPLACE FUNCTION save_califica_lugar(param_id_usuaria_param INTEGER, param_latitud_califica_lugar text, param_longitud_califica_lugar text, param_id_cat_lugar INTEGER, param_fecha_califica_lugar DATE, calificacion_total real, estatus INTEGER, id_opciones integer[]) RETURNS int LANGUAGE plpgsql AS $$
+	DECLARE
+	myid INTEGER;
+	i INTEGER;
+	BEGIN
+	INSERT INTO califica_lugar(id_usuaria, latitud_califica_lugar, longitud_califica_lugar, id_cat_lugar, fecha_califica_lugar, calificacion_total, estatus) VALUES (param_id_usuaria_param, param_latitud_califica_lugar, param_longitud_califica_lugar, param_id_cat_lugar, param_fecha_califica_lugar,8.9,1) RETURNING id_califica_lugar INTO myid;
+
+	FOREACH i IN ARRAY id_opciones
+		LOOP 
+   			INSERT INTO lista_califica_lugar(id_cat_opciones_lugar, id_califica_lugar) VALUES (i, myid);
+		END LOOP;
+
+	UPDATE usuaria SET califica_lugar_usuaria = califica_lugar_usuaria + 1 WHERE id_usuaria = param_id_usuaria_param;
+	RETURN myid;
+END
+$$;
+
+
+
+

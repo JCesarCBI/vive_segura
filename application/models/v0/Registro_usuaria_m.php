@@ -38,9 +38,7 @@
 		// }
 		
 		public function save($usuaria) {
-			$custom_query = "INSERT INTO usuaria(mac_dispositivo,plataforma_dispositivo,nickname_usuaria,nombre_usuaria,fecha_nacimiento_usuaria,id_cat_colonia_cp,trabaja_usuaria,estudia_usuaria,ama_casa_usuaria,fecha_registro_usuaria) 
-			VALUES ('".$usuaria["mac_dispositivo"]."',
-	    			".$usuaria["plataforma_dispositivo"].",
+			$custom_query = "INSERT INTO usuaria(mac_dispositivo,plataforma_dispositivo,nickname_usuaria,nombre_usuaria,fecha_nacimiento_usuaria,id_cat_colonia_cp,trabaja_usuaria,estudia_usuaria,ama_casa_usuaria,fecha_registro_usuaria) VALUES ('".$usuaria["mac_dispositivo"]."', ".$usuaria["plataforma_dispositivo"].",
 	    			'".$usuaria["nickname_usuaria"]."',
 	    			'".$usuaria["nombre_usuaria"]."',
 	    			'".$usuaria["fecha_nacimiento_usuaria"]."',
