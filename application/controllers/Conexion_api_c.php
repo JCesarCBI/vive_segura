@@ -15,13 +15,13 @@
 				'nombre_usuaria' => 'CelesteCDMX',
 				'fecha_nacimiento_usuaria' => '1985-02-16',
 				'codigo_postal' => '04910',
-				'trabaja_usuaria' => 1,
-				'estudia_usuaria' => 0,
-				'ama_casa_usuaria' => 1,
+				'trabaja_usuaria' => 'TRUE',
+				'estudia_usuaria' => 'TRUE',
+				'ama_casa_usuaria' => 'TRUE',
 				'fecha_registro_usuaria' => '2016-03-14',
 			);
 			
-			$ch = curl_init('http://localhost/vive_segura/v0/Usuarias');
+			$ch = curl_init('http://www14.df.gob.mx/virtual/inmujeres/v0/Usuarias');
 			
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $usuaria);
@@ -74,7 +74,6 @@
 			$sensacion = array(
 				'id_usuaria' => 1,
 				'id_cat_sensacion' => 1,
-				'id_cat_sensacion' => 3,
 				'latitud_sensacion' => '19.360439',
 				'longitud_sensacion' => '-99.073316',
 				'id_cat_lugar' => 1,
