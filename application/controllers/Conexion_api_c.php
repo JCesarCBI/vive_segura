@@ -21,7 +21,7 @@
 				'fecha_registro_usuaria' => '2016-03-14',
 			);
 			
-			$ch = curl_init('http://www14.df.gob.mx/virtual/inmujeres/v0/Usuarias');
+			$ch = curl_init('http://localhost/vive_segura/v0/Usuarias');
 			
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $usuaria);

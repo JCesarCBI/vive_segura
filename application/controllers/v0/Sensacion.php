@@ -36,15 +36,20 @@
 		public function index_post()
 		{			
 			if (! $this->post()) {
-				$this->response(NULL, 400);
+				$response = "No se enviaron parametros";
+				$code = 400;
 			} else {
 				$id_sensacion = $this->Sensacion_m->save($this->post());
 				if (!is_null($id_sensacion)) {
-					$this->response(array("Response" => $id_sensacion), 200);
+					$response = array('id_sensacion' => $id_sensacion);
+					$code = 200;
 				} else {
-					$this->response(array("Error" => "Ha ocurrido un error."), 400);
+					$response = "Ha ocurrido un error al registrar la sensacion.";
+					$code = 400;
 				}
 			}
+			
+			$this->response(array("code" => $code, "response" => $response));
 
 		}
 		
