@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhostww',
+	'hostname' => 'localhost',
 	'username' => 'postgres',
 	'password' => 'admin',
 	'database' => 'vive_segura',

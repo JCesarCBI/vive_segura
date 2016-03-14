@@ -95,5 +95,5 @@
 
 	}
 
-/* End of file usuarias.php */
+/* End of file Usuarias.php */
 /* Location: ./application/controllers/usuarias.php */
