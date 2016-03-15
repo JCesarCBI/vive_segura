@@ -9,7 +9,7 @@
 			$this->load->model('v0/Registro_usuaria_m');
 			$this->load->model('v0/Codigo_postal_m');
 		}
-
+		
 		public function index_get() {			
 			$usuarias = $this->Registro_usuaria_m->get();
 			
@@ -35,11 +35,13 @@
 		}		
 		
 		public function index_post() {
-			if (!$this->post()) {
+			if (!$this->post('datos')) {
 				$response = "No se enviaron parametros";
 				$code = 400;
 			} else {
-				$datos = $this->post();
+				$datos = $this->post('datos');
+				$datos = $this->seguridad->descifra($datos);
+				$datos = json_decode($datos);
 
 				$id_cat_colonia_cp = $this->Codigo_postal_m->get_id_colonia_by_cp($datos["codigo_postal"]);
 
@@ -52,6 +54,8 @@
 					$id_usuaria = $this->Registro_usuaria_m->save($datos);
 					if (!is_null($id_usuaria)) {
 						$response = array('id_usuaria' => $id_usuaria);
+						$response = json_encode($response);
+						$response = $this->seguridad->cifra($response);
 						$code = 200;
 					} else {
 						$response = "Ha ocurrido un error al registrar la usuaria.";

@@ -1,6 +1,6 @@
 <?php 
 	defined('BASEPATH') OR exit('No direct script access allowed');
-	define("KEY", "cdmx_taxi_seguro");
+	define("KEY", "vive_segura_cdmx");
 
 	class Seguridad {
 

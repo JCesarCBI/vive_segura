@@ -21,10 +21,14 @@
 				'fecha_registro_usuaria' => '2016-03-14',
 			);
 			
+			$usuaria = json_encode($usuaria);
+			$datos = array('datos' => $usuaria );
+			
+			
 			$ch = curl_init('http://localhost/vive_segura/v0/Usuarias');
 			
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $usuaria);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $datos);
 			
 			$response = curl_exec($ch);
 			curl_close($ch);
