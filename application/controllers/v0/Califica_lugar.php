@@ -24,14 +24,18 @@
 		}		
 		
 		public function index_post() {
-			if (!$this->post()) {
+			if (!$this->post('datos')) {
 				$response = "No se recibieron parametros";
 				$code = 400;
 			} else {
-				$datos = $this->post();
+				$datos = $this->post('datos');
+				$datos = $this->seguridad->descifra($datos);
+				$datos = json_decode($datos, true);
 				if ($this->validar_datos_califica_lugar($datos) == 1) {
 					$id_califica_lugar = $this->Califica_lugar_m->save($datos);
 					$response = array('id_califica_lugar' => $id_califica_lugar);
+					$response = json_encode($response);
+					$response = $this->seguridad->cifra($response);
 					$code = 200;
 				} else {
 					$response = "Datos no validos";

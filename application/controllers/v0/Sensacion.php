@@ -35,13 +35,18 @@
 		
 		public function index_post()
 		{			
-			if (! $this->post()) {
+			if (! $this->post('datos')) {
 				$response = "No se enviaron parametros";
 				$code = 400;
 			} else {
-				$id_sensacion = $this->Sensacion_m->save($this->post());
+				$datos = $this->post('datos');
+				$datos = $this->seguridad->descifra($datos);
+				$datos = json_decode($datos, true);
+				$id_sensacion = $this->Sensacion_m->save($datos);
 				if (!is_null($id_sensacion)) {
 					$response = array('id_sensacion' => $id_sensacion);
+					$response = json_encode($response);
+					$response = $this->seguridad->cifra($response);
 					$code = 200;
 				} else {
 					$response = "Ha ocurrido un error al registrar la sensacion.";
